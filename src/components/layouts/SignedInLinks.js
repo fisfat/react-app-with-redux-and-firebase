@@ -7,10 +7,9 @@ const SignedInLinks = () => {
         <div>
                 <ul id="nav-mobile" className="right hide-on-med-and-down">
                     <li><NavLink to="/create">Add project</NavLink></li>
-                    <li><NavLink to="badges.html">Log Out</NavLink></li>
-                    <li><NavLink to="collapsible.html" className="btn btn-floating grey lighten-1">NN</NavLink></li>
+                    <li><NavLink to="/">Log Out</NavLink></li>
+                    <li><NavLink to="/" className="btn btn-floating grey lighten-1">NN</NavLink></li>
                 </ul>
-                
         </div>
     )
 }
