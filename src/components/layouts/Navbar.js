@@ -12,9 +12,9 @@ const Navbar = (props) => {
         <div>
              <nav>
                 <div className="nav-wrapper container">
-                    <Link to="/" className="brand-logo">MARIO'S PLAN</Link>
+                    <Link to="/" className="brand-logo left">PROJECTS</Link>
                     { links } 
-                </div>
+                </div>  
             </nav>
         </div>
     )

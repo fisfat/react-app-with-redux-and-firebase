@@ -35,7 +35,7 @@ exports.userJoined = functions.auth.user()
                 console.log(newUser.firstName + ' ' + newUser.lastName)
                 const notification = {
                     content: 'Joined the party',
-                    user: `${newUser.firstName} ${newUser.lastName}`,
+                    user: `${newUser.lastName}`,
                     time: admin.firestore.FieldValue.serverTimestamp()
                 }
                 return createNotification(notification)
