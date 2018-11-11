@@ -3,13 +3,22 @@ import { connect } from 'react-redux'
 import { signIn } from '../../store/actions/AuthActions'
 // import { auth } from 'firebase';
 import { Redirect } from 'react-router-dom'
+import { css } from 'react-emotion';
+import { BeatLoader } from 'react-spinners'
 
+
+const override = css`
+    display: block;
+    margin-top: 30px;
+    border-color: red;
+`;
 
 
 class SignIn extends Component {
     state ={
         email: '',
-        password: ''
+        password: '',
+        loading: true
 
     }
     handleChange = (e) => {
@@ -18,16 +27,41 @@ class SignIn extends Component {
         })
     }
 
+    componentDidMount(){
+        this.setState({
+            loading: false
+        })
+    }
+
+    handleClick = () =>{
+        this.setState({
+            loading: true
+        })
+    }
+
+
     handleSubmit = (e) => {
         e.preventDefault();
         this.props.signIn(this.state)
     }
   render() {
       const { authError, auth } = this.props;
+      const error = authError ? <p className="center">{authError} </p> : null;
         if(auth.uid) return <Redirect to="/" />
 
     return (
+        
       <div className="container">
+      <div className="center">
+      
+            <BeatLoader
+                className={override}
+                sizeUnit={"px"}
+                size={20}
+                color={'#e53935'}
+                loading={this.state.loading}
+                />
+        </div>
         <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Sign In</h5>
 
@@ -42,9 +76,9 @@ class SignIn extends Component {
             </div>
 
             <div className="input-field">
-                <button className="btn pink lighten-1 z-depth-0"> Login </button>
+                <button className="btn pink lighten-1 z-depth-0" onClick={this.handleClick}> Login </button>
                 <div className="red-text">
-                    { authError ? <p>{authError}</p> : null }
+                    { error }
                 </div>
             </div>
         </form>

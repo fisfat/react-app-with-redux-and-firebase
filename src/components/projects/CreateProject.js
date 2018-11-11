@@ -2,19 +2,38 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { createProject } from '../../store/actions/ProjectActions'
 import { Redirect } from 'react-router-dom'
+import { css } from 'react-emotion';
+import { ClipLoader } from 'react-spinners'
 
 
+const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+`;
 
 class CreateProject extends Component {
     state = {
         title: '',
         content: '',
-        
+        loading: true
 
     }
     handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value
+        })
+    }
+
+    componentDidMount(){
+        this.setState({
+            loading: false
+        })
+    }
+
+    handleClick = () =>{
+        this.setState({
+            loading: true
         })
     }
 
@@ -27,7 +46,17 @@ class CreateProject extends Component {
       const { auth } = this.props
       if(!auth.uid) return <Redirect  to="/signin" />
     return (
+        
       <div className="container">
+        <div className="center">
+        <ClipLoader
+          className={override}
+          sizeUnit={"px"}
+          size={50}
+          color={'#e53935'}
+          loading={this.state.loading}
+        />
+        </div>
         <form onSubmit={this.handleSubmit} className="white">
             <h5 className="grey-text text-darken-3">Create Project</h5>
 
@@ -43,7 +72,7 @@ class CreateProject extends Component {
             
 
             <div className="input-field">
-                <button className="btn pink lighten-1 z-depth-0"> Submit </button>
+                <button className="btn pink lighten-1 z-depth-0" onClick={this.handleClick}> Submit </button>
             </div>
         </form>
       </div>
