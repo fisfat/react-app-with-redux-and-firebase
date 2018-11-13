@@ -12,7 +12,7 @@
   1. `git clone https://github.com/fisfat/react-app-with-redux-and-firebase.git`
   2. `cd react-app-with-redux-and-firebase`
   3. `npm install`
-  4. `npm start`
+  4. `npm start.`
 
 ### Dependencies and packages
 1. `React`
